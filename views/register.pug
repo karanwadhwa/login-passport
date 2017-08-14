@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  h1 #{title}
+
+      
+  form(method='POST' action='/users/register')
+    div
+      label Name:
+      input(type='text' placeholder='name' name='name')
+    br
+    div
+      label Username:
+      input(type='text' placeholder='username' name='username')
+    br
+    div
+      label Email:
+      input(type='email' placeholder='email' name='email')
+    br
+    div
+      label Password:
+      input(type='password' placeholder='password' name='password')
+    br
+    div
+      label Confirm Password:
+      input(type='password' placeholder='password' name='password2')
+    br
+    button(type='submit') Submit
