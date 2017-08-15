@@ -6,11 +6,12 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const mongoose = require('mongoose');
 const passport = require('passport');
+const config = require('./config/database');
 
 // Port
 port = 3000;
 
-mongoose.connect('mongodb://localhost/login-passport');
+mongoose.connect(config.database);
 let db = mongoose.connection;
 
 // Check db connection and errors
@@ -44,6 +45,14 @@ app.use(session({
   saveUninitialized: true,
 }));
 
+// Express Messages Middleware
+app.use(require('connect-flash')());
+app.use(function (req, res, next) {
+  res.locals.messages = require('express-messages')(req, res);
+  next();
+});
+
+
 // Express Validator Middleware
 app.use(expressValidator({
   errorFormatter: function(param, msg, value) {
@@ -62,13 +71,11 @@ app.use(expressValidator({
   }
 }));
 
-// Express Messages Middleware
-app.use(require('connect-flash')());
-app.use(function (req, res, next) {
-  res.locals.messages = require('express-messages')(req, res);
-  next();
-});
-
+//Passport Config
+require('./config/passport.js')(passport);
+// Passport Middleware
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Routes
 app.use('/' , index);
