@@ -1,28 +1,27 @@
 extends layout
 
 block content
-  h1 #{title}
-
-      
-  form(method='POST' action='/users/register')
-    div
-      label Name:
-      input(type='text' placeholder='name' name='name')
-    br
-    div
-      label Username:
-      input(type='text' placeholder='username' name='username')
-    br
-    div
-      label Email:
-      input(type='email' placeholder='email' name='email')
-    br
-    div
-      label Password:
-      input(type='password' placeholder='password' name='password')
-    br
-    div
-      label Confirm Password:
-      input(type='password' placeholder='password' name='password2')
-    br
-    button(type='submit') Submit
+  
+  .container-reg
+    .panel.panel-primary
+      .panel-heading
+        h3.panel-title  #{title}
+      .panel-body.center-block    
+        form(method='POST' action='/users/register')
+          .form-group
+            label.control-label Name:
+              input(type='text' name='name' class='form-control' id='inputDefault')
+          .form-group
+            label.control-label Username:
+              input(type='text' name='username' class='form-control' id='inputDefault')
+          .form-group
+            label.control-label Email:
+              input(type='text' name='email' class='form-control' id='inputDefault')
+          .form-group
+            label.control-label Password:
+              input(type='password' name='password' class='form-control' id='inputDefault')
+          .form-group
+            label.control-label Confirm Password:
+              input(type='password' name='password2' class='form-control' id='inputDefault')
+                
+          button(type='submit' class='btn btn-primary') Submit

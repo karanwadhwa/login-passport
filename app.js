@@ -38,6 +38,9 @@ app.set('view engine', 'pug');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 
+// Set Public Folder
+app.use(express.static(path.join(__dirname, 'public')));
+
 // Express Session Middleware
 app.use(session({
   secret: 'secret',
